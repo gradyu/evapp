@@ -18,6 +18,11 @@ ext {
             appCompatV7        : "com.android.support:appcompat-v7:${supportVersion}",
             supportDesign      : "com.android.support:design:${supportVersion}",
             contraintLayout    : "com.android.support.constraint:constraint-layout:${contraintLayoutVersion}",
+            dagger             : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroid      : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
     ]
 
     appTestDependencies = [

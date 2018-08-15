@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -27,13 +26,18 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    def appDependencies = rootProject.ext.appLibrarayDependencies
+    def appDependencies  = rootProject.ext.appLibrarayDependencies
     def testDependencies = rootProject.ext.appTestDependencies
 
     implementation appDependencies.kotlin
     implementation appDependencies.appCompatV7
     implementation appDependencies.contraintLayout
     implementation appDependencies.supportDesign
+    implementation appDependencies.dagger
+    implementation appDependencies.daggerAndroid
+    implementation appDependencies.daggerSupport
+    kapt           appDependencies.daggerCompiler
+    kapt           appDependencies.daggerProcessor
 
     testImplementation        testDependencies.junit
     androidTestImplementation testDependencies.testRunner
