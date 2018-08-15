@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    defaultConfig {
+        applicationId "com.rainey.evapp"
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def appDependencies = rootProject.ext.appLibrarayDependencies
+    def testDependencies = rootProject.ext.appTestDependencies
+
+    implementation appDependencies.kotlin
+    implementation appDependencies.appCompatV7
+    implementation appDependencies.contraintLayout
+    implementation appDependencies.supportDesign
+
+    testImplementation        testDependencies.junit
+    androidTestImplementation testDependencies.testRunner
+    androidTestImplementation testDependencies.testEspresso
+}

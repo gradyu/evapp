@@ -1,0 +1,28 @@
+ext {
+    // Android
+    androidCompileSdkVersion = 27
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 27
+    // Library
+    kotlinVersion = '1.2.60'
+    supportVersion = '27.1.1'
+    daggerVersion = '2.17'
+    contraintLayoutVersion = '1.1.2'
+    // Test
+    jUnitVersion = '4.12'
+    testRunnerVersion = '1.0.2'
+    testEspressoVersion = '3.0.2'
+
+    appLibrarayDependencies =[
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            appCompatV7        : "com.android.support:appcompat-v7:${supportVersion}",
+            supportDesign      : "com.android.support:design:${supportVersion}",
+            contraintLayout    : "com.android.support.constraint:constraint-layout:${contraintLayoutVersion}",
+    ]
+
+    appTestDependencies = [
+            junit              : "junit:junit:${jUnitVersion}",
+            testRunner         : "com.android.support.test:runner:${testRunnerVersion}",
+            testEspresso       : "com.android.support.test.espresso:espresso-core:${testEspressoVersion}",
+    ]
+}
