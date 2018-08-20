@@ -26,8 +26,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':domain')
+
     def appDependencies  = rootProject.ext.appLibrarayDependencies
     def testDependencies = rootProject.ext.appTestDependencies
+
+    kapt           appDependencies.daggerCompiler
+    kapt           appDependencies.daggerProcessor
 
     implementation appDependencies.kotlin
     implementation appDependencies.appCompatV7
@@ -36,8 +41,8 @@ dependencies {
     implementation appDependencies.dagger
     implementation appDependencies.daggerAndroid
     implementation appDependencies.daggerSupport
-    kapt           appDependencies.daggerCompiler
-    kapt           appDependencies.daggerProcessor
+    implementation appDependencies.rxJava
+    implementation appDependencies.rxAndroid
 
     testImplementation        testDependencies.junit
     androidTestImplementation testDependencies.testRunner

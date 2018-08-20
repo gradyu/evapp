@@ -8,10 +8,17 @@ ext {
     supportVersion = '27.1.1'
     daggerVersion = '2.17'
     contraintLayoutVersion = '1.1.2'
+    rxJavaVersion = '2.2.0'
+    rxAndriodVersion = '2.0.2'
     // Test
     jUnitVersion = '4.12'
     testRunnerVersion = '1.0.2'
     testEspressoVersion = '3.0.2'
+
+    domainLibraryDependencies = [
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
 
     appLibrarayDependencies =[
             kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
@@ -23,6 +30,8 @@ ext {
             daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
             daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndriodVersion}",
     ]
 
     appTestDependencies = [
