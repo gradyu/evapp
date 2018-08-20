@@ -17,21 +17,32 @@ package com.rainey.evapp
 
 import android.app.Activity
 import android.app.Application
+import android.app.Application.ActivityLifecycleCallbacks
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.rainey.evapp.activity.common.Dispatch
 import com.rainey.evapp.injection.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
+import java.util.*
 import javax.inject.Inject
 
-class EvApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
+class EvApplication : Application(), HasActivityInjector, HasSupportFragmentInjector, ActivityLifecycleCallbacks {
+
 
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+    @Inject
+    lateinit var dispatch: Dispatch
+
+    private val stack: Stack<Activity> = Stack()
+    private var activityCounter = 0
 
 
     override fun onCreate() {
@@ -41,6 +52,12 @@ class EvApplication : Application(), HasActivityInjector, HasSupportFragmentInje
                 .application(this)
                 .build()
                 .inject(this)
+        registerActivityLifecycleCallbacks(this)
+    }
+
+    override fun onTerminate() {
+        unregisterActivityLifecycleCallbacks(this)
+        super.onTerminate()
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
@@ -49,6 +66,40 @@ class EvApplication : Application(), HasActivityInjector, HasSupportFragmentInje
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentDispatchingAndroidInjector
+    }
+
+    override fun onActivityCreated(activity: Activity?, bundle: Bundle?) {
+        if (stack.isEmpty()) {
+            dispatch.start()
+        }
+        stack.push(activity)
+    }
+
+    override fun onActivityStarted(activity: Activity?) {
+        activityCounter++
+    }
+
+    override fun onActivitySaveInstanceState(activity: Activity?, bundle: Bundle?) {
+
+    }
+
+    override fun onActivityResumed(activity: Activity?) {
+
+    }
+
+    override fun onActivityPaused(activity: Activity?) {
+
+    }
+
+    override fun onActivityStopped(activity: Activity?) {
+        activityCounter--
+    }
+
+    override fun onActivityDestroyed(activity: Activity?) {
+        stack.remove(activity)
+        if (stack.isEmpty()) {
+            dispatch.stop()
+        }
     }
 
 }

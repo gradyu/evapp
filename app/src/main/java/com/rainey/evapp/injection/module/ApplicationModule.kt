@@ -17,6 +17,10 @@ package com.rainey.evapp.injection.module
 
 import android.app.Application
 import android.content.Context
+import com.rainey.domain.executor.PostExecutionThread
+import com.rainey.evapp.UiThread
+import com.rainey.evapp.activity.common.DefaultDispatch
+import com.rainey.evapp.activity.common.Dispatch
 import com.rainey.evapp.injection.scope.PerApplication
 import dagger.Module
 import dagger.Provides
@@ -28,5 +32,17 @@ class ApplicationModule {
     @Provides
     fun provideContext(application: Application): Context {
         return application
+    }
+
+    @PerApplication
+    @Provides
+    fun provideDispatch(dispatch: DefaultDispatch): Dispatch {
+        return dispatch
+    }
+
+    @PerApplication
+    @Provides
+    fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread {
+        return uiThread
     }
 }

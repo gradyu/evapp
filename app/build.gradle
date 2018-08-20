@@ -28,11 +28,11 @@ dependencies {
 
     implementation project(':domain')
 
-    def appDependencies  = rootProject.ext.appLibrarayDependencies
+    def appDependencies = rootProject.ext.appLibrarayDependencies
     def testDependencies = rootProject.ext.appTestDependencies
 
-    kapt           appDependencies.daggerCompiler
-    kapt           appDependencies.daggerProcessor
+    kapt appDependencies.daggerCompiler
+    kapt appDependencies.daggerProcessor
 
     implementation appDependencies.kotlin
     implementation appDependencies.appCompatV7
@@ -43,8 +43,9 @@ dependencies {
     implementation appDependencies.daggerSupport
     implementation appDependencies.rxJava
     implementation appDependencies.rxAndroid
+    implementation appDependencies.logger
 
-    testImplementation        testDependencies.junit
+    testImplementation testDependencies.junit
     androidTestImplementation testDependencies.testRunner
     androidTestImplementation testDependencies.testEspresso
 }
