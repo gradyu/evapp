@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common
+package com.rainey.evapp.activity.common.service
 
 interface Dispatch {
     /**

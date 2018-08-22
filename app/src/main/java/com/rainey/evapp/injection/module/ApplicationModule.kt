@@ -18,9 +18,9 @@ package com.rainey.evapp.injection.module
 import android.app.Application
 import android.content.Context
 import com.rainey.domain.executor.PostExecutionThread
-import com.rainey.evapp.UiThread
-import com.rainey.evapp.activity.common.DefaultDispatch
-import com.rainey.evapp.activity.common.Dispatch
+import com.rainey.evapp.activity.common.UiThread
+import com.rainey.evapp.activity.common.service.DefaultDispatch
+import com.rainey.evapp.activity.common.service.Dispatch
 import com.rainey.evapp.injection.scope.PerApplication
 import dagger.Module
 import dagger.Provides

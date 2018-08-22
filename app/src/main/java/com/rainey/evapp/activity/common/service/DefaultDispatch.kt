@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity
+package com.rainey.evapp.activity.common.service
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import dagger.android.AndroidInjection
-import io.reactivex.disposables.CompositeDisposable
+import com.orhanobut.logger.Logger
+import com.rainey.evapp.activity.common.config.LoggerConfig
+import javax.inject.Inject
 
-abstract class BaseActivity: AppCompatActivity() {
+class DefaultDispatch @Inject constructor() : Dispatch {
 
-    protected val autoDisposables = CompositeDisposable()
+    @Inject
+    lateinit var loggerConfig: LoggerConfig
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        super.onCreate(savedInstanceState)
+    override fun start() {
+        loggerConfig.init()
+        Logger.d("Dispatch start")
+
     }
 
-    override fun onDestroy() {
-        if (!autoDisposables.isDisposed) {
-            autoDisposables.dispose()
-        }
-        super.onDestroy()
+    override fun stop() {
+        Logger.d("Dispatch stop")
     }
+
 }

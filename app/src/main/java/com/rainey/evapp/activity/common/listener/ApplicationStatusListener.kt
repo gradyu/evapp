@@ -13,24 +13,12 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common
+package com.rainey.evapp.activity.common.listener
 
-import com.orhanobut.logger.Logger
-import com.rainey.evapp.activity.common.config.LoggerConfig
-import javax.inject.Inject
+interface ApplicationStatusListener {
 
-class DefaultDispatch @Inject constructor() : Dispatch {
+    fun applicationBecomeForeground()
 
-    @Inject
-    lateinit var loggerConfig: LoggerConfig
-
-    override fun start() {
-        loggerConfig.init()
-        Logger.d("Dispatch start")
-    }
-
-    override fun stop() {
-        Logger.d("Dispatch stop")
-    }
+    fun applicationBecomeBackground()
 
 }

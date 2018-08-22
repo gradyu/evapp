@@ -18,16 +18,15 @@ package com.rainey.evapp.activity.index
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.orhanobut.logger.Logger
 import com.rainey.evapp.R
+import com.rainey.evapp.activity.BaseActivity
 import com.rainey.evapp.activity.common.Const
 import com.rainey.evapp.activity.main.MainActivity
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +47,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun setupDelaySwitchHomeActivity() {
-        Logger.d("MARK: ${Thread.currentThread().id}")
-        Observable.timer(Const.SPLASH_DELAY, TimeUnit.SECONDS).subscribe {
+        autoDisposables.add(Observable.timer(Const.SPLASH_DELAY, TimeUnit.SECONDS).subscribe {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }
+        })
     }
 
 }

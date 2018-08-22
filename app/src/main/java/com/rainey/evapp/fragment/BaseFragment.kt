@@ -18,11 +18,21 @@ package com.rainey.evapp.fragment
 import android.content.Context
 import android.support.v4.app.Fragment
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseFragment: Fragment() {
+
+    protected val autoDisposables = CompositeDisposable()
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+    }
+
+    override fun onDestroy() {
+        if (!autoDisposables.isDisposed) {
+            autoDisposables.dispose()
+        }
+        super.onDestroy()
     }
 }

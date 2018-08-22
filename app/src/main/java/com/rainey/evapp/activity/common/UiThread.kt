@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp
+package com.rainey.evapp.activity.common
 
 import com.rainey.domain.executor.PostExecutionThread
 import io.reactivex.Scheduler

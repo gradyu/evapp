@@ -27,8 +27,10 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject lateinit var context: Context
-    @Inject lateinit var name: String
+    @Inject
+    lateinit var context: Context
+    @Inject
+    lateinit var name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
