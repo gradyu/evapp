@@ -15,6 +15,7 @@
 
 package com.rainey.evapp.injection.module
 
+import com.rainey.evapp.activity.index.SplashActivity
 import com.rainey.evapp.activity.main.MainActivity
 import com.rainey.evapp.activity.main.MainActivityModule
 import com.rainey.evapp.injection.scope.PerActivity
@@ -27,4 +28,9 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun contributeMainActivityInjector(): MainActivity
+
+    @PerActivity
+    @ContributesAndroidInjector
+    abstract fun contributeSplashActivityInjector(): SplashActivity
+
 }

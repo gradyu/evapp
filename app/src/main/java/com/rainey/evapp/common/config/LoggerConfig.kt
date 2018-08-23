@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common.config
+package com.rainey.evapp.common.config
 
 import android.util.Log
 import com.orhanobut.logger.AndroidLogAdapter
@@ -21,7 +21,7 @@ import com.orhanobut.logger.LogStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.rainey.evapp.BuildConfig
-import com.rainey.evapp.activity.common.Const
+import com.rainey.evapp.common.Const
 import javax.inject.Inject
 
 class LoggerConfig @Inject constructor() {

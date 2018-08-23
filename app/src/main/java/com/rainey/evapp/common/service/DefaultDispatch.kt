@@ -13,9 +13,18 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common.service
+package com.rainey.evapp.common.service
+
+
+import com.orhanobut.logger.Logger
+import com.rainey.evapp.common.config.LoggerConfig
+import com.rainey.evapp.common.listener.ApplicationStatusListener
+import javax.inject.Inject
 
 interface Dispatch {
+
+    val applicationStatusListeners: List<ApplicationStatusListener>
+
     /**
      * dispatch start
      */
@@ -25,4 +34,25 @@ interface Dispatch {
      * dispatch stop
      */
     fun stop()
+}
+
+class DefaultDispatch @Inject constructor() : Dispatch {
+
+    override val applicationStatusListeners: List<ApplicationStatusListener> by lazy {
+        arrayListOf<ApplicationStatusListener>()
+    }
+
+    @Inject
+    lateinit var loggerConfig: LoggerConfig
+
+    override fun start() {
+        loggerConfig.init()
+        Logger.d("Dispatch start")
+
+    }
+
+    override fun stop() {
+        Logger.d("Dispatch stop")
+    }
+
 }

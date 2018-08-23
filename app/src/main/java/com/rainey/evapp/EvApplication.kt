@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
 package com.rainey.evapp
 
 import android.app.Activity
@@ -20,8 +21,7 @@ import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.rainey.evapp.activity.common.listener.ApplicationStatusListener
-import com.rainey.evapp.activity.common.service.Dispatch
+import com.rainey.evapp.common.service.Dispatch
 import com.rainey.evapp.injection.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -43,37 +43,30 @@ class EvApplication : Application(), HasActivityInjector, HasSupportFragmentInje
     @Inject
     lateinit var dispatch: Dispatch
 
-    private val stack: Stack<Activity> = Stack()
-    private val applicationStatusListeners = arrayListOf<ApplicationStatusListener>()
+    private val stack by lazy {
+        Stack<Activity>()
+    }
 
-    private var activityCounter : Int by Delegates.observable(0) { _, old, new ->
+    private var activityCounter: Int by Delegates.observable(0) { _, old, new ->
         if (old == 0 && new == 1) {
-            for (listener in applicationStatusListeners) {
+            for (listener in dispatch.applicationStatusListeners) {
                 listener.applicationBecomeForeground()
             }
-        } else if (new == 0) {
-            for (listener in applicationStatusListeners) {
+        } else if (new == 0 && old == 1) {
+            for (listener in dispatch.applicationStatusListeners) {
                 listener.applicationBecomeBackground()
             }
         }
     }
 
-    var currentActivity: Activity? = null
+    val currentActivity: Activity?
         get() {
             if (stack.isEmpty()) return null
             return stack.lastElement()
         }
 
-    var appIsBackground: Boolean = false
+    val appIsBackground: Boolean
         get() = activityCounter == 0
-
-    fun addApplicationStatusListener(listener: ApplicationStatusListener) {
-        applicationStatusListeners.add(listener)
-    }
-
-    fun removeApplicationStatusListener(listener: ApplicationStatusListener) {
-        applicationStatusListeners.remove(listener)
-    }
 
     override fun onCreate() {
         super.onCreate()

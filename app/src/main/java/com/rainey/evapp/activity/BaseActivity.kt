@@ -17,12 +17,15 @@ package com.rainey.evapp.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.rainey.evapp.common.extension.autoDispose
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity: AppCompatActivity() {
 
-    protected val autoDisposables = CompositeDisposable()
+    protected val autoDisposables by lazy {
+        CompositeDisposable()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -30,9 +33,7 @@ abstract class BaseActivity: AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if (!autoDisposables.isDisposed) {
-            autoDisposables.dispose()
-        }
+        autoDisposables.autoDispose()
         super.onDestroy()
     }
 }

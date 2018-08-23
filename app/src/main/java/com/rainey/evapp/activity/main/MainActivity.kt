@@ -20,8 +20,10 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
+import com.orhanobut.logger.Logger
 import com.rainey.evapp.R
 import com.rainey.evapp.activity.BaseActivity
+import com.rainey.evapp.common.delegate.extra
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -30,15 +32,21 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var context: Context
     @Inject
-    lateinit var name: String
+    lateinit var injectName: String
+
+    private val name: String? by extra("name")
+    private val age: String? by extra("age")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        Logger.d("Name: $name")
+        Logger.d("age: $age")
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Name: $name\nContext: $context", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "InjectName: $injectName\nContext: $context", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
     }

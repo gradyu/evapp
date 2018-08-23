@@ -13,12 +13,9 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common.listener
+package com.rainey.evapp.common
 
-interface ApplicationStatusListener {
-
-    fun applicationBecomeForeground()
-
-    fun applicationBecomeBackground()
-
+object Const {
+    const val SPLASH_DELAY = 3L
+    const val APP_LOG_TAG  = "EvApplication"
 }

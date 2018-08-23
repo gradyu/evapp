@@ -21,7 +21,8 @@ import android.os.Bundle
 import android.view.View
 import com.rainey.evapp.R
 import com.rainey.evapp.activity.BaseActivity
-import com.rainey.evapp.activity.common.Const
+import com.rainey.evapp.common.Const
+import com.rainey.evapp.common.extension.plusAssign
 import com.rainey.evapp.activity.main.MainActivity
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
@@ -32,7 +33,7 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         hideSystemUiNavigationBar()
-        setupDelaySwitchHomeActivity()
+        setupDelayHomeActivity()
     }
 
     private fun hideSystemUiNavigationBar() {
@@ -46,11 +47,15 @@ class SplashActivity : BaseActivity() {
         }
     }
 
-    private fun setupDelaySwitchHomeActivity() {
-        autoDisposables.add(Observable.timer(Const.SPLASH_DELAY, TimeUnit.SECONDS).subscribe {
-            startActivity(Intent(this, MainActivity::class.java))
+    private fun setupDelayHomeActivity() {
+        autoDisposables += Observable.timer(Const.SPLASH_DELAY, TimeUnit.SECONDS).subscribe {
+            val intent = Intent(this@SplashActivity, MainActivity::class.java).apply {
+                putExtra("name", "grady")
+                putExtra("age", "19")
+            }
+            startActivity(intent)
             finish()
-        })
+        }
     }
 
 }

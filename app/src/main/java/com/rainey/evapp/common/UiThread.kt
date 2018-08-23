@@ -13,9 +13,15 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common
+package com.rainey.evapp.common
 
-object Const {
-    const val SPLASH_DELAY = 3L
-    const val APP_LOG_TAG  = "EvApplication"
+import com.rainey.domain.executor.PostExecutionThread
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
+
+class UiThread @Inject internal constructor() : PostExecutionThread {
+    override val scheduler: Scheduler
+        get() = AndroidSchedulers.mainThread()
+
 }

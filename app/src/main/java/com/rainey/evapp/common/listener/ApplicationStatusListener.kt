@@ -13,15 +13,12 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common
+package com.rainey.evapp.common.listener
 
-import com.rainey.domain.executor.PostExecutionThread
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import javax.inject.Inject
+interface ApplicationStatusListener {
 
-class UiThread @Inject internal constructor() : PostExecutionThread {
-    override val scheduler: Scheduler
-        get() = AndroidSchedulers.mainThread()
+    fun applicationBecomeForeground()
+
+    fun applicationBecomeBackground()
 
 }

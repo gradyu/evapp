@@ -13,25 +13,21 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.common.service
+@file:Suppress("unused")
+package com.rainey.evapp.common.extension
 
-import com.orhanobut.logger.Logger
-import com.rainey.evapp.activity.common.config.LoggerConfig
-import javax.inject.Inject
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
-class DefaultDispatch @Inject constructor() : Dispatch {
+fun Disposable.addTo(disposables: CompositeDisposable):Disposable {
+    disposables.add(this)
+    return this
+}
 
-    @Inject
-    lateinit var loggerConfig: LoggerConfig
+fun CompositeDisposable.autoDispose() {
+    if (!isDisposed) dispose()
+}
 
-    override fun start() {
-        loggerConfig.init()
-        Logger.d("Dispatch start")
-
-    }
-
-    override fun stop() {
-        Logger.d("Dispatch stop")
-    }
-
+operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
+    add(disposable)
 }
