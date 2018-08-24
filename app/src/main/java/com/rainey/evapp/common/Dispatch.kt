@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.common.service
+package com.rainey.evapp.common
 
 
 import com.orhanobut.logger.Logger

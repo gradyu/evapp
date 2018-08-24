@@ -21,7 +21,7 @@ import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.rainey.evapp.common.service.Dispatch
+import com.rainey.evapp.common.Dispatch
 import com.rainey.evapp.injection.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

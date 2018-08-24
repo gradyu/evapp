@@ -17,10 +17,12 @@ package com.rainey.evapp.injection.module
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import com.rainey.domain.executor.PostExecutionThread
 import com.rainey.evapp.common.UiThread
-import com.rainey.evapp.common.service.DefaultDispatch
-import com.rainey.evapp.common.service.Dispatch
+import com.rainey.evapp.common.DefaultDispatch
+import com.rainey.evapp.common.Dispatch
+import com.rainey.evapp.common.utils.SharedPreferencesHelper
 import com.rainey.evapp.injection.scope.PerApplication
 import dagger.Module
 import dagger.Provides
@@ -38,6 +40,18 @@ class ApplicationModule {
     @Provides
     fun provideDispatch(dispatch: DefaultDispatch): Dispatch {
         return dispatch
+    }
+
+    @PerApplication
+    @Provides
+    fun provideSharedPreferencesHelper(sharedPreferences: SharedPreferences): SharedPreferencesHelper {
+        return SharedPreferencesHelper(sharedPreferences)
+    }
+
+    @PerApplication
+    @Provides
+    fun provideSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
     }
 
     @PerApplication

@@ -24,26 +24,55 @@ import com.orhanobut.logger.Logger
 import com.rainey.evapp.R
 import com.rainey.evapp.activity.BaseActivity
 import com.rainey.evapp.common.delegate.extra
+import com.rainey.evapp.common.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
+    companion object {
+        const val EXTRA_NAME = "name"
+        const val EXTRA_PWD = "password"
+        const val EXTRA_AGE = "age"
+        const val EXTRA_MARRIED = "married"
+        const val EXTRA_WEIGHT = "weight"
+    }
+
     @Inject
     lateinit var context: Context
+
     @Inject
     lateinit var injectName: String
 
-    private val name: String? by extra("name")
-    private val age: String? by extra("age")
+    @Inject
+    lateinit var helper: SharedPreferencesHelper
+
+    private val name: String? by extra(EXTRA_NAME)
+    private val password: String? by extra(EXTRA_PWD)
+    private val age: Int? by extra(EXTRA_AGE)
+    private val married: Boolean? by extra(EXTRA_MARRIED)
+    private val weight: Float? by extra(EXTRA_WEIGHT)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        Logger.d("Name: $name")
-        Logger.d("age: $age")
+        with(helper) {
+            this.name = this@MainActivity.name ?: ""
+            this.password = this@MainActivity.password ?: ""
+            this.age = this@MainActivity.age ?: 10
+            this.married = this@MainActivity.married ?: false
+            this.weight = this@MainActivity.weight ?: 60.0f
+        }
+
+        with(helper) {
+            Logger.d("name: $name")
+            Logger.d("password: $password")
+            Logger.d("age: $age")
+            Logger.d("married: $married")
+            Logger.d("weight: $weight")
+        }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "InjectName: $injectName\nContext: $context", Snackbar.LENGTH_LONG)
