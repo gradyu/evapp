@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.injection.component
+package com.rainey.evapp.injection
 
 import android.app.Application
 import com.rainey.evapp.EvApplication
