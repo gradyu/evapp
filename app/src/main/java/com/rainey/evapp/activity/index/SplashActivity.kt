@@ -24,7 +24,7 @@ import com.rainey.evapp.activity.main.MainActivity
 import com.rainey.evapp.common.Const
 import com.rainey.evapp.common.extension.plusAssign
 import io.reactivex.Observable
-import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivity
 import java.util.concurrent.TimeUnit
 
 class SplashActivity : BaseActivity() {
@@ -49,13 +49,13 @@ class SplashActivity : BaseActivity() {
 
     private fun setupDelayHomeActivity() {
         autoDisposables += Observable.timer(Const.SPLASH_DELAY, TimeUnit.SECONDS).subscribe {
-            startActivity(intentFor<MainActivity>(
+            startActivity<MainActivity>(
                     MainActivity.EXTRA_NAME to "Grady",
                     MainActivity.EXTRA_PWD to "123456",
                     MainActivity.EXTRA_AGE to 21,
                     MainActivity.EXTRA_MARRIED to true,
                     MainActivity.EXTRA_WEIGHT to 56.5f
-            ))
+            )
             finish()
         }
     }

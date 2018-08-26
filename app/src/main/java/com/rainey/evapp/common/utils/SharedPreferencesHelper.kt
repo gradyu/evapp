@@ -24,10 +24,10 @@ class SharedPreferencesHelper(sharedPreferences: SharedPreferences) {
         sharedPreferences.initKey("1234567890abcdef")
     }
 
-    var name by sharedPreferences.string(isEncrypt = true)
-    var password by sharedPreferences.string(isEncrypt = true)
-    var age by sharedPreferences.int(isEncrypt = true)
-    var married by sharedPreferences.boolean(isEncrypt = true)
-    var weight by sharedPreferences.float(isEncrypt = true)
+    var spName by sharedPreferences.string(isEncrypt = true)
+    var spPassword by sharedPreferences.string(isEncrypt = true)
+    var spAge by sharedPreferences.int(isEncrypt = true)
+    var spMarried by sharedPreferences.boolean(isEncrypt = true)
+    var spWeight by sharedPreferences.float(isEncrypt = true)
 
 }

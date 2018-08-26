@@ -59,19 +59,19 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
 
         with(helper) {
-            this.name = this@MainActivity.name ?: ""
-            this.password = this@MainActivity.password ?: ""
-            this.age = this@MainActivity.age ?: 10
-            this.married = this@MainActivity.married ?: false
-            this.weight = this@MainActivity.weight ?: 60.0f
+            spName = name ?: ""
+            spPassword = password ?: ""
+            spAge = age ?: 10
+            spMarried = married ?: false
+            spWeight = weight ?: 60.0f
         }
 
         with(helper) {
-            Logger.d("name: $name")
-            Logger.d("password: $password")
-            Logger.d("age: $age")
-            Logger.d("married: $married")
-            Logger.d("weight: $weight")
+            Logger.d("name: $spName")
+            Logger.d("password: $spPassword")
+            Logger.d("age: $spAge")
+            Logger.d("married: $spMarried")
+            Logger.d("weight: $spWeight")
         }
 
         fab.setOnClickListener { view ->
