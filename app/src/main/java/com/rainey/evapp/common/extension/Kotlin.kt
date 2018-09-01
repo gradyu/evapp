@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.fragment.main
+package com.rainey.evapp.common.extension
 
-import com.rainey.evapp.injection.scope.PerFragment
-import dagger.Module
-import dagger.Provides
+import com.orhanobut.logger.Logger
 
-@Module
-class MainFragmentModule {
-
-    @PerFragment
-    @Provides
-    fun provideName(): String {
-        return "Injected from ${MainFragmentModule::class.java.simpleName}"
+inline fun <reified T> Any.safeCast(action: T.() -> Unit) {
+    if (this is T) {
+        this.action()
     }
+}
+
+fun Any?.log() = this?.let {
+    Logger.d(this)
 }

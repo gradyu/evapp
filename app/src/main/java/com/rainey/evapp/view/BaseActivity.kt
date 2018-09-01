@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity
+package com.rainey.evapp.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.alibaba.android.arouter.launcher.ARouter
 import com.rainey.evapp.common.extension.autoDispose
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
@@ -30,6 +31,7 @@ abstract class BaseActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
     }
 
     override fun onDestroy() {

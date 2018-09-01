@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.fragment
+package com.rainey.evapp.view
 
 import android.content.Context
 import android.support.v4.app.Fragment

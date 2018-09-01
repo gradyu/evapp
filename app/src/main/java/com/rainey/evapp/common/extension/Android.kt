@@ -13,18 +13,11 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.injection.module
+package com.rainey.evapp.common.extension
 
-import com.rainey.evapp.view.main.HomeFragment
-import com.rainey.evapp.view.main.HomeFragmentModule
-import com.rainey.evapp.injection.scope.PerFragment
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import android.content.Context
+import android.widget.Toast
 
-@Module
-abstract class FragmentBindingModule {
-
-    @PerFragment
-    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
-    abstract fun contributeMainFragmentInjector(): HomeFragment
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

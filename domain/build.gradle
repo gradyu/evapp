@@ -1,10 +1,11 @@
 apply plugin: 'kotlin'
 
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
 dependencies {
     def domainLibraryDependencies = rootProject.ext.domainLibraryDependencies
     implementation domainLibraryDependencies.kotlin
-    implementation domainLibraryDependencies.rxJava
+    implementation domainLibraryDependencies.rxKotlin
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"

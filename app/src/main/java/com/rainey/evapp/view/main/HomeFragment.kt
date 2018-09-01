@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.fragment.main
+package com.rainey.evapp.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rainey.evapp.R
-import com.rainey.evapp.fragment.BaseFragment
+import com.rainey.evapp.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class MainFragment : BaseFragment() {
+class HomeFragment : BaseFragment() {
 
     @Inject
     lateinit var name: String

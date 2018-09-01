@@ -13,22 +13,25 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.main
+package com.rainey.evapp.view.main
 
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.orhanobut.logger.Logger
 import com.rainey.evapp.R
-import com.rainey.evapp.activity.BaseActivity
-import com.rainey.evapp.common.delegate.extra
+import com.rainey.evapp.common.Const
 import com.rainey.evapp.common.utils.SharedPreferencesHelper
+import com.rainey.evapp.view.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+@Route(path = Const.APP_HOME_PATH)
+class HomeActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_NAME = "name"
@@ -47,11 +50,25 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var helper: SharedPreferencesHelper
 
-    private val name: String? by extra(EXTRA_NAME)
-    private val password: String? by extra(EXTRA_PWD)
-    private val age: Int? by extra(EXTRA_AGE)
-    private val married: Boolean? by extra(EXTRA_MARRIED)
-    private val weight: Float? by extra(EXTRA_WEIGHT)
+    @Autowired(name = EXTRA_NAME)
+    @JvmField
+    var name: String? = null
+
+    @Autowired(name = EXTRA_PWD)
+    @JvmField
+    var password: String? = null
+
+    @Autowired
+    @JvmField
+    var age: Int = 0
+
+    @Autowired
+    @JvmField
+    var married: Boolean = false
+
+    @Autowired
+    @JvmField
+    var weight: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

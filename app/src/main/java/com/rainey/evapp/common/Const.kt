@@ -16,6 +16,16 @@
 package com.rainey.evapp.common
 
 object Const {
+    /**        Common Config         **/
     const val SPLASH_DELAY = 3L
     const val APP_LOG_TAG  = "EvApplication"
+
+    /**       Page Arouter Path      **/
+    const val APP_HOME_PATH = "/app/home"
+
+    /**     Service Arouter Path     **/
+    const val SRV_LOGGER = "/service/logger"
+    const val SRV_DEGRADE = "/service/degrade"
+    const val SRV_PATH_REPLACE = "/service/path"
+    const val SRV_JSON = "/service/json"
 }

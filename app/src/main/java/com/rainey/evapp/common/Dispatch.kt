@@ -16,8 +16,11 @@
 package com.rainey.evapp.common
 
 
+import android.app.Application
+import android.content.Context
+import com.alibaba.android.arouter.launcher.ARouter
 import com.orhanobut.logger.Logger
-import com.rainey.evapp.common.config.LoggerConfig
+import com.rainey.evapp.BuildConfig
 import com.rainey.evapp.common.listener.ApplicationStatusListener
 import javax.inject.Inject
 
@@ -43,12 +46,29 @@ class DefaultDispatch @Inject constructor() : Dispatch {
     }
 
     @Inject
-    lateinit var loggerConfig: LoggerConfig
+    lateinit var context: Context
 
     override fun start() {
-        loggerConfig.init()
+        appEnvInit()
         Logger.d("Dispatch start")
 
+    }
+
+    private fun appEnvInit() {
+        arouterInit()
+        loggerInit()
+    }
+
+    private fun arouterInit() {
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(context as Application)
+    }
+
+    private fun loggerInit() {
+        ARouter.getInstance().build(Const.SRV_LOGGER).navigation()
     }
 
     override fun stop() {

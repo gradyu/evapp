@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.injection.module
+package com.rainey.evapp.view.main
 
-import com.rainey.evapp.view.main.HomeFragment
-import com.rainey.evapp.view.main.HomeFragmentModule
 import com.rainey.evapp.injection.scope.PerFragment
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.Provides
 
 @Module
-abstract class FragmentBindingModule {
+class HomeFragmentModule {
 
     @PerFragment
-    @ContributesAndroidInjector(modules = [HomeFragmentModule::class])
-    abstract fun contributeMainFragmentInjector(): HomeFragment
+    @Provides
+    fun provideName(): String {
+        return "Injected from ${HomeFragmentModule::class.java.simpleName}"
+    }
 }

@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.common.config
+package com.rainey.evapp.common.service
 
+import android.content.Context
 import android.util.Log
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.facade.template.IProvider
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.LogStrategy
 import com.orhanobut.logger.Logger
@@ -24,12 +27,22 @@ import com.rainey.evapp.BuildConfig
 import com.rainey.evapp.common.Const
 import javax.inject.Inject
 
-class LoggerConfig @Inject constructor() {
+@Route(path = Const.SRV_LOGGER)
+class LoggerService: IProvider {
 
-    private var initialized = false
+    private val config by lazy {
+        LoggerConfig()
+    }
+
+    override fun init(context: Context?) {
+        config.init()
+    }
+
+}
+
+private class LoggerConfig @Inject constructor() {
 
     fun init() {
-        if (initialized) return
         val format = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)
                 .methodCount(1)
@@ -41,7 +54,6 @@ class LoggerConfig @Inject constructor() {
                 return BuildConfig.DEBUG
             }
         })
-        initialized = true
     }
 
     class LogCatStrategy : LogStrategy {
@@ -63,3 +75,4 @@ class LoggerConfig @Inject constructor() {
 
     }
 }
+

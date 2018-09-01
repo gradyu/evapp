@@ -7,11 +7,14 @@ ext {
     kotlinVersion = '1.2.61'
     supportVersion = '27.1.1'
     daggerVersion = '2.17'
+    gsonVersion = '2.8.5'
     contraintLayoutVersion = '1.1.2'
-    rxJavaVersion = '2.2.0'
+    rxKotlinVersion = '2.3.0'
     rxAndriodVersion = '2.0.2'
     loggerVersion = '2.2.0'
     ankoVersion = '0.10.5'
+    arouterApiVersion = '1.4.0'
+    arouterCompilerVersion = '1.2.1'
     // Test
     jUnitVersion = '4.12'
     testRunnerVersion = '1.0.2'
@@ -19,7 +22,7 @@ ext {
 
     domainLibraryDependencies = [
             kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
     ]
 
     appLibrarayDependencies =[
@@ -27,15 +30,17 @@ ext {
             appCompatV7        : "com.android.support:appcompat-v7:${supportVersion}",
             supportDesign      : "com.android.support:design:${supportVersion}",
             contraintLayout    : "com.android.support.constraint:constraint-layout:${contraintLayoutVersion}",
+            gson               : "com.google.code.gson:gson:${gsonVersion}",
             dagger             : "com.google.dagger:dagger:${daggerVersion}",
             daggerAndroid      : "com.google.dagger:dagger-android:${daggerVersion}",
             daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
             daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
-            rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndriodVersion}",
             logger             : "com.orhanobut:logger:${loggerVersion}",
-            ankoCommon         : "org.jetbrains.anko:anko-commons:${ankoVersion}",
+            arouterApi         : "com.alibaba:arouter-api:${arouterApiVersion}",
+            arouterCompiler    : "com.alibaba:arouter-compiler:${arouterCompilerVersion}",
     ]
 
     appTestDependencies = [

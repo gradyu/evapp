@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-package com.rainey.evapp.activity.main
+package com.rainey.evapp.view.main
 
 import com.rainey.evapp.injection.scope.PerActivity
 import dagger.Module
 import dagger.Provides
 
 @Module
-class MainActivityModule {
+class HomeActivityModule {
 
     @PerActivity
     @Provides
     fun provideName(): String {
-        return "Name from ${MainActivityModule::class.java.simpleName}"
+        return "Name from ${HomeActivityModule::class.java.simpleName}"
     }
 }
